@@ -7,7 +7,7 @@
 .masthead {
   border-top: 4px solid #111111;
   border-bottom: 2px solid #111111;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
   padding: 16px 0 10px;
 }
 
@@ -33,6 +33,44 @@
   color: #3b3b3b;
 }
 
+.ticker-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 10px 14px;
+  background: #111111;
+  color: #f5f0e8;
+  font-size: 0.75rem;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.category-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.category-btn {
+  border: 1px solid rgba(17, 17, 17, 0.25);
+  background: transparent;
+  color: #111111;
+  padding: 9px 14px;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.category-btn.active,
+.category-btn:hover {
+  background: #111111;
+  color: #f8f4ee;
+}
+
 .content {
   display: grid;
   gap: 24px;
@@ -45,7 +83,8 @@
 }
 
 .label,
-.small-label {
+.small-label,
+.summary-label {
   display: inline-block;
   font-size: 0.72rem;
   letter-spacing: 0.12rem;
@@ -74,6 +113,25 @@
   gap: 12px;
   flex-wrap: wrap;
   margin-top: 18px;
+}
+
+.summary-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.summary-box {
+  background: #ffffff;
+  border: 1px solid rgba(17, 17, 17, 0.15);
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.summary-box strong {
+  font-size: 1.1rem;
 }
 
 .pill,

@@ -2,11 +2,33 @@
   <header class="masthead">
     <div class="top-line">
       <span>Finance Review</span>
-      <span>{{ featuredArticle?.publishedAt | date:'MMM d, y' || 'Daily analysis' }}</span>
+      <span>{{ featuredArticle ? (featuredArticle.publishedAt | date:'MMM d, y') : 'Daily analysis' }}</span>
     </div>
     <h1>Financial Chronicle</h1>
     <p class="tagline">Major finance news, reviewed with context and perspective.</p>
   </header>
+
+  <div class="ticker-bar" aria-label="Finance market ticker">
+    <span>Dow</span>
+    <span>+1.2%</span>
+    <span>Nasdaq</span>
+    <span>+0.9%</span>
+    <span>USD/EUR</span>
+    <span>1.08</span>
+    <span>Gold</span>
+    <span>+0.4%</span>
+  </div>
+
+  <nav class="category-nav" aria-label="News categories">
+    <button
+      *ngFor="let category of categories"
+      type="button"
+      class="category-btn"
+      [class.active]="selectedCategory === category"
+      (click)="setCategory(category)">
+      {{ category }}
+    </button>
+  </nav>
 
   <main class="content" *ngIf="!isLoading; else loading">
     <section class="hero" *ngIf="featuredArticle">
@@ -20,8 +42,23 @@
       </div>
     </section>
 
+    <section class="summary-row" *ngIf="featuredArticle">
+      <div class="summary-box">
+        <span class="summary-label">Market Signal</span>
+        <strong>{{ featuredArticle.sentiment }}</strong>
+      </div>
+      <div class="summary-box">
+        <span class="summary-label">Focus</span>
+        <strong>{{ featuredArticle.category }}</strong>
+      </div>
+      <div class="summary-box">
+        <span class="summary-label">Source</span>
+        <strong>{{ featuredArticle.source }}</strong>
+      </div>
+    </section>
+
     <section class="news-grid">
-      <article class="news-card" *ngFor="let article of articles.slice(1)">
+      <article class="news-card" *ngFor="let article of getVisibleArticles()">
         <div class="card-header">
           <span class="small-label">{{ article.category }}</span>
           <span>{{ article.publishedAt | date:'MMM d, y' }}</span>
