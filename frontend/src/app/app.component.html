@@ -1,0 +1,42 @@
+<div class="page-shell">
+  <header class="masthead">
+    <div class="top-line">
+      <span>Finance Review</span>
+      <span>{{ featuredArticle?.publishedAt | date:'MMM d, y' || 'Daily analysis' }}</span>
+    </div>
+    <h1>Financial Chronicle</h1>
+    <p class="tagline">Major finance news, reviewed with context and perspective.</p>
+  </header>
+
+  <main class="content" *ngIf="!isLoading; else loading">
+    <section class="hero" *ngIf="featuredArticle">
+      <div class="label">Front Page</div>
+      <h2>{{ featuredArticle.title }}</h2>
+      <p>{{ featuredArticle.summary }}</p>
+      <div class="meta-row">
+        <span>{{ featuredArticle.source }}</span>
+        <span class="pill">{{ featuredArticle.category }}</span>
+        <span class="pill sentiment">{{ featuredArticle.sentiment }}</span>
+      </div>
+    </section>
+
+    <section class="news-grid">
+      <article class="news-card" *ngFor="let article of articles.slice(1)">
+        <div class="card-header">
+          <span class="small-label">{{ article.category }}</span>
+          <span>{{ article.publishedAt | date:'MMM d, y' }}</span>
+        </div>
+        <h3>{{ article.title }}</h3>
+        <p>{{ article.summary }}</p>
+        <div class="footer-row">
+          <span>{{ article.source }}</span>
+          <span class="sentiment-tag">{{ article.sentiment }}</span>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <ng-template #loading>
+    <div class="loading">Loading financial headlines...</div>
+  </ng-template>
+</div>

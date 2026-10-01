@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  background: #f0efe9;
+  color: #111111;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button, a {
+  font: inherit;
+}
